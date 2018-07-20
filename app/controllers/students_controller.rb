@@ -24,10 +24,10 @@ class StudentsController < ApplicationController
     @students = Student.all
   end
 
-  # def search
-  #   query = "%#{params[:query]}%"
-  #   @users = User.where("name LIKE ? ", query)
-  # end
+  def search
+    query = "%#{params[:query]}%"
+    @users = User.where("name LIKE ? ", query)
+  end
 
   def student_params
     params.require(:student).permit(:name, :birthday, :hometown)
