@@ -21,15 +21,14 @@ class StudentsController < ApplicationController
   end
 
   def index
+    @students = Student.search(params[:query])
+    if !params[:query].nil?
+      self.search(query)
+    else
     @students = Student.all
   end
 
-  def search
-    query = "%#{params[:query]}%"
-    @users = User.where("name LIKE ? ", query)
-  end
-
   def student_params
-    params.require(:student).permit(:name, :birthday, :hometown)
+    params.require(:student).permit(:name, :birthday, :hometown. :query)
   end
 end
